@@ -1,6 +1,6 @@
 package com.bootcamp.rest.services;
 
-import com.bootcamp.rest.models.CreditCard;
+import com.bootcamp.rest.models.entities.CreditCard;
 import com.bootcamp.rest.models.dto.Client;
 import com.bootcamp.rest.models.dto.ClientDTO;
 import reactor.core.publisher.Mono;

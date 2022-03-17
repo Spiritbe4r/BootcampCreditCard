@@ -1,14 +1,14 @@
 package com.bootcamp.rest.services.Impl;
 
-import com.bootcamp.rest.models.CreditCard;
+import com.bootcamp.rest.models.entities.CreditCard;
 import com.bootcamp.rest.models.dto.Client;
 import com.bootcamp.rest.models.dto.ClientDTO;
-import com.bootcamp.rest.repository.CreditCardRepo;
+
+import com.bootcamp.rest.repository.CreditCardRepository;
 import com.bootcamp.rest.services.CreditCardService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class CreditCardServiceImpl implements CreditCardService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CreditCardServiceImpl.class);
-    private final CreditCardRepo creditCardRepo;
+    private final CreditCardRepository creditCardRepo;
 
     private final WebClient webClient;
 

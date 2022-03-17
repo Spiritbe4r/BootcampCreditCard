@@ -1,9 +1,9 @@
+
 spring:
   application:
     name: creditcard-microservice
   config:
     import: configserver:http://localhost:8887
-
   profiles:
     active: dev
   mvc:
@@ -11,4 +11,4 @@ spring:
       matching-strategy: ant_path_matcher
 
 microservices-urls:
-  api-client: http://localhost:8095/api/clients
+  api-client: http://localhost:8095/api/client

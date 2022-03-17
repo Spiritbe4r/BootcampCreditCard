@@ -11,7 +11,7 @@ import lombok.*;
 public class Client {
 
     private String name;
-    private String customerIdType;
-    private String customerIdNumber;
+    private String clientIdType;
+    private String clientIdNumber;
     private ClientType clientType;
 }

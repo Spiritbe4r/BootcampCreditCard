@@ -1,4 +1,4 @@
-package com.bootcamp.rest.models;
+package com.bootcamp.rest.models.entities;
 import javax.validation.constraints.NotNull;
 
 import com.bootcamp.rest.models.dto.ClientDTO;
