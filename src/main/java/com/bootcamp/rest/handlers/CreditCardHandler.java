@@ -65,16 +65,8 @@ public class CreditCardHandler {
                                     .code(customer.getClientType().getCode())
                                     .clientIdNumber(customer.getClientIdNumber()).build());
                             return cardService.validateClientIdNumber(customer.getClientIdNumber())
-                                    .flatMap(creditcardFound -> {
-                                        if(creditcardFound.getPan() != null){
-                                            LOGGER.info("La tarjeta de crédito encontrada es: "
-                                                    + creditcardFound.getPan());
-                                            return Mono.empty();
-                                        }else {
-                                            LOGGER.info("No se encontró la cuenta ");
-                                            return cardService.save(creditCard);
-                                        }
-                                    });
+                                    .flatMap(this::validateCreditCard)
+                                    ;
                         })
                 ).flatMap( c -> ServerResponse
                         .ok()
@@ -83,12 +75,19 @@ public class CreditCardHandler {
                 .switchIfEmpty(ServerResponse.notFound().build());
     }
 
-    /**
-     * Delete credit card mono.
-     *
-     * @param request the request
-     * @return the mono
-     */
+    public Mono<CreditCard> validateCreditCard(CreditCard creditCard){
+        if(creditCard.getPan() != null){
+            LOGGER.info("La tarjeta de crédito encontrada es: "
+                    + creditCard.getPan());
+            return Mono.empty();
+        }else {
+            LOGGER.info("No se encontró la cuenta ");
+            return cardService.save(creditCard);
+        }
+
+
+    }
+
     public Mono<ServerResponse> deleteCreditCard(ServerRequest request){
 
         String id = request.pathVariable("id");
