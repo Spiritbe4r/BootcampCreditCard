@@ -55,7 +55,7 @@ public class CreditCardServiceImpl implements CreditCardService {
         return creditCardRepo.deleteById(s);
     }
 
-    @Override
+    /*@Override
     public Mono<Client> getClient(String clientIdNumber) {
         Map<String,Object> params=new HashMap<String,Object>();
         params.put("clientIdNumber",clientIdNumber);
@@ -65,6 +65,15 @@ public class CreditCardServiceImpl implements CreditCardService {
                 .exchangeToMono(clientResponse -> clientResponse.bodyToMono(Client.class))
                 .doOnNext(c->LOGGER.info("Client response : {}",c.getName()));
 
+    }*/
+
+    @Override
+    public Mono<Client> getClient(String clientIdNumber) {
+        return webClient.get()
+                .uri("/findClientCredit/"+clientIdNumber)
+                .retrieve()
+                .bodyToMono(Client.class)
+                .doOnNext(c->LOGGER.info("Client response : {}",c.getName()));
     }
 
     @Override

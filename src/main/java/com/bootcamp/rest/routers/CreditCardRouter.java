@@ -19,7 +19,7 @@ public class CreditCardRouter {
                 .andRoute(GET("/api/creditcard/payment/{pan}"), creditCardHandler::getCreditCardByPan)
                 .andRoute(GET("/api/creditcard/{id}"), creditCardHandler::getCreditCard)
                 .andRoute(GET("/api/creditcard/client/{clientIdNumber}"), creditCardHandler::getCreditCardByClient)
-                .andRoute(RequestPredicates.POST("/api/creditcard/{customerIdentityNumber}"), creditCardHandler::createCreditCard)
+                .andRoute(RequestPredicates.POST("/api/creditcard/{clientIdNumber}"), creditCardHandler::createCreditCard)
                 //.andRoute(RequestPredicates.PUT("/api/creditcard/{id}"), creditCardHandler::updateCreditCard)
                 .andRoute(RequestPredicates.DELETE("/api/creditcard/{id}"), creditCardHandler::deleteCreditCard);
         }

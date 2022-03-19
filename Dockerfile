@@ -1,4 +1,7 @@
 FROM openjdk:11-jdk
-EXPOSE 8086
-ENTRYPOINT ["java","-jar","/rest-0.0.1.jar"]
+VOLUME /tmp
+EXPOSE 8088
 
+ARG JAR_FILE=target/rest-0.0.1.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]

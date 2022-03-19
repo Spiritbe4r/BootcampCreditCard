@@ -56,7 +56,7 @@ public class CreditCardHandler {
     public Mono<ServerResponse> createCreditCard(ServerRequest request){
 
         Mono<CreditCard> creditCardMono = request.bodyToMono(CreditCard.class);
-        String clientIdNumber = request.pathVariable("customerIdentityNumber");
+        String clientIdNumber = request.pathVariable("clientIdNumber");
 
         return creditCardMono.flatMap( creditCard -> cardService.getClient(clientIdNumber)
                         .flatMap(customer -> {
@@ -64,9 +64,7 @@ public class CreditCardHandler {
                             creditCard.setClient(ClientDTO.builder().name(customer.getName())
                                     .code(customer.getClientType().getCode())
                                     .clientIdNumber(customer.getClientIdNumber()).build());
-                            return cardService.validateClientIdNumber(customer.getClientIdNumber())
-                                    .flatMap(this::validateCreditCard)
-                                    ;
+                            return this.validateCreditCard(creditCard);
                         })
                 ).flatMap( c -> ServerResponse
                         .ok()
@@ -76,14 +74,17 @@ public class CreditCardHandler {
     }
 
     public Mono<CreditCard> validateCreditCard(CreditCard creditCard){
-        if(creditCard.getPan() != null){
-            LOGGER.info("La tarjeta de crédito encontrada es: "
-                    + creditCard.getPan());
-            return Mono.empty();
-        }else {
-            LOGGER.info("No se encontró la cuenta ");
-            return cardService.save(creditCard);
-        }
+        return cardService.validateClientIdNumber(creditCard.getClient().getClientIdNumber())
+                .flatMap(creditcardFound -> {
+                    if(creditcardFound.getPan() != null){
+                        LOGGER.info("La tarjeta de crédito encontrada es: "
+                                + creditcardFound.getPan());
+                        return Mono.empty();
+                    }else {
+                        LOGGER.info("No se encontró la cuenta ");
+                        return cardService.save(creditCard);
+                    }
+                });
 
 
     }
