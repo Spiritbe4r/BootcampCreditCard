@@ -4,7 +4,8 @@ spring:
     name: creditcard-microservice
   config:
 
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+    import: optional:configserver:${BUILD_IN_SPRING_CLOUD_CONFIG_URI:http://localhost:8888/}
+
 
   profiles:
     active: dev
