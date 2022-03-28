@@ -11,3 +11,6 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+microservices-urls:
+  api-client: http://localhost:8095/api/client
