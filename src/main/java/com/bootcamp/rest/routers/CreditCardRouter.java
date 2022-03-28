@@ -13,14 +13,16 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class CreditCardRouter {
 
-    @Bean
-    public RouterFunction<ServerResponse> routes(CreditCardHandler creditCardHandler) {
-        return route(GET("/api/creditcard"), creditCardHandler::getAll)
-                .andRoute(GET("/api/creditcard/payment/{pan}"), creditCardHandler::getCreditCardByPan)
-                .andRoute(GET("/api/creditcard/{id}"), creditCardHandler::getCreditCard)
-                .andRoute(GET("/api/creditcard/client/{clientIdNumber}"), creditCardHandler::getCreditCardByClient)
-                .andRoute(RequestPredicates.POST("/api/creditcard/{clientIdNumber}"), creditCardHandler::createCreditCard)
-                //.andRoute(RequestPredicates.PUT("/api/creditcard/{id}"), creditCardHandler::updateCreditCard)
-                .andRoute(RequestPredicates.DELETE("/api/creditcard/{id}"), creditCardHandler::deleteCreditCard);
-        }
-    }
+  @Bean
+  public RouterFunction<ServerResponse> routes(CreditCardHandler creditCardHandler) {
+    return route(GET("/api/creditcard"), creditCardHandler::getAll)
+          .andRoute(GET("/api/creditcard/payment/{pan}"), creditCardHandler::getCreditCardByPan)
+          .andRoute(GET("/api/creditcard/{id}"), creditCardHandler::getCreditCard)
+          .andRoute(GET("/api/creditcard/client/{clientIdNumber}"),
+                creditCardHandler::getCreditCardByClient)
+          .andRoute(RequestPredicates.POST("/api/creditcard/{clientIdNumber}"),
+                creditCardHandler::createCreditCard)
+          .andRoute(RequestPredicates.DELETE("/api/creditcard/{id}"),
+                creditCardHandler::deleteCreditCard);
+  }
+}
