@@ -6,7 +6,7 @@ spring:
     name: creditcard-microservice
 
   config:
-    import: optional:configserver:${CONFIG_SERVER_URL}
+    import: optional:configserver:https://azurespringboot2022-configserver.azuremicroservices.io
   profiles:
     active: dev
   mvc:
