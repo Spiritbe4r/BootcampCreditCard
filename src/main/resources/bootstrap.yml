@@ -1,12 +1,9 @@
-#server:
-#  port: 8088
+server:
+  port: 8088
 
 spring:
   application:
     name: creditcard-microservice
-  data:
-    mongodb:
-      uri: mongodb+srv://spiritbear:Cuymagic321@mycluster.s22zz.mongodb.net/creditcard?ssl=true&retryWrites=true&w=majority
 
   config:
     import: optional:configserver:https://azurespringboot2022-configserver.azuremicroservices.io
