@@ -1,12 +1,12 @@
-server:
-  port: 8088
+#server:
+#  port: 8088
 
 spring:
   application:
     name: creditcard-microservice
 
   config:
-    import: optional:configserver:https://azurespringboot2022-configserver.azuremicroservices.io
+    import: optional:configserver:${CONFIG_SERVER_URL}
   profiles:
     active: dev
   mvc:
