@@ -14,6 +14,7 @@ spring:
 spring:
   application:
     name: creditcard-microservice
+
   profiles:
     active: dev
 
@@ -23,8 +24,4 @@ spring:
 
   config:
     import: optional:configserver:http://localhost:8888
-
-
-
-
 
