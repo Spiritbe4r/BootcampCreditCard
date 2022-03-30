@@ -1,11 +1,5 @@
 spring:
 
-  profiles:
-    active: prod
-
-#  cloud:
-#    config:
-#      profile: prod
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
