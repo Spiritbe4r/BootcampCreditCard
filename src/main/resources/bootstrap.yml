@@ -2,6 +2,10 @@ spring:
 
   profiles:
     active: prod
+
+#  cloud:
+#    config:
+#      profile: prod
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
@@ -10,18 +14,19 @@ spring:
       uri: mongodb+srv://spiritbear:Cuymagic321@mycluster.s22zz.mongodb.net/creditcard?ssl=true&retryWrites=true&w=majority
 
 ---
-
-spring:
-  application:
-    name: creditcard-microservice
-
-  profiles:
-    active: dev
-
-  mvc:
-    pathmatch:
-      matching-strategy: ant-path-matcher
-
-  config:
-    import: optional:configserver:http://localhost:8888
-
+#
+#spring:
+#  application:
+#    name: creditcard-microservice
+#
+#
+#  profiles:
+#    active: dev
+#
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant-path-matcher
+#
+#  config:
+#    import: optional:configserver:http://localhost:8888
+#
