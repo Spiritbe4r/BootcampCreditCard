@@ -1,15 +1,30 @@
-#server:
-#  port: 8088
+spring:
+
+  profiles:
+    active: prod
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  data:
+    mongodb:
+      uri: mongodb+srv://spiritbear:Cuymagic321@mycluster.s22zz.mongodb.net/creditcard?ssl=true&retryWrites=true&w=majority
+
+---
 
 spring:
   application:
     name: creditcard-microservice
-
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URL}
   profiles:
     active: dev
+
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+
+
 
