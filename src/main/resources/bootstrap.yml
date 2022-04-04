@@ -1,6 +1,14 @@
 spring:
   profiles:
-    active: prod
+
+    active: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - prod
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
@@ -12,19 +20,17 @@ microservices-urls:
   api-client: ${API_CLIENT_CONFIG}
 
 ---
-#
-#spring:
-#  application:
-#    name: creditcard-microservice
-#
-#
-#  profiles:
-#    active: dev
-#
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant-path-matcher
-#
-#  config:
-#    import: optional:configserver:http://localhost:8888
-#
+
+spring:
+  application:
+    name: creditcard-microservice
+  config:
+    activate:
+      on-profile:
+        - dev
+    import: optional:configserver:http://localhost:8888
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+
